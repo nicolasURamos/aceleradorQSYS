@@ -13,15 +13,21 @@ em software sobre o processador NIOS.
 Figura 1
 int conv(int pixel[][]){ //pixel é uma matriz 3x3
 int mask[3][3];
+
 mask[0][0] = 1; mask[0][1] = 2; mask[0][2] = 1;
+
 mask[1][0] = 0; mask[1][1] = 0; mask[1][2] = 0;
+
 mask[2][0] = -1; mask[2][1] = -2; mask[2][2] = -1;
+
 int i = 1; int j = 1;
+
 int temp = (pixel[i-1][j-1] * mask[0][0]) + (pixel[i-1][j] * mask[0][1]) +
 (pixel[i-1][j+1] * mask[0][2]) + (pixel[i][j-1] * mask[1][0]) +
 ( pixel[i][j] * mask[1][1]) + (pixel[i][j+1] * mask[1][2]) +
 (pixel[i+1][j-1] * mask[2][0]) + (pixel[i+1][j] * mask[2][1]) +
 (pixel[i+1][j+1] * mask[2][2]);
+
 Return temp;
 }
 
