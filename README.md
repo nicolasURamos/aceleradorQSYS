@@ -11,7 +11,9 @@ suporte do acelerador em relação ao desempenho da mesma função executada pur
 em software sobre o processador NIOS.
 
 Figura 1
-int conv(int pixel[][]){ //pixel é uma matriz 3x3
+
+int conv(int pixel[][]){ //pixel é uma matriz 3x3 
+
 int mask[3][3];
 
 mask[0][0] = 1; mask[0][1] = 2; mask[0][2] = 1;
