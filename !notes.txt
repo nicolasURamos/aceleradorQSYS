@@ -1,0 +1,43 @@
+(sobre o convMultOPCRTL.vhd)
+Medindo o Desempenho no Sistema NIOS II
+Para medir o desempenho desse módulo em um sistema NIOS II:
+
+Integrar o Módulo VHDL no Sistema NIOS II: Adicione conv_module ao seu design no Qsys e conecte-o ao processador NIOS II 
+através do barramento Avalon.
+
+Escrever um Programa em C para Medir o Desempenho: Utilize o programa C, similar ao que foi fornecido anteriormente, 
+para acionar o módulo conv_module e medir seu desempenho usando o contador de desempenho da Avalon.
+
+#include <stdio.h>
+#include "system.h"
+#include "altera_avalon_performance_counter.h"
+
+int main() {
+    // Configura os dados de entrada para conv_module
+    // ...
+
+    PERF_RESET(PERFORMANCE_COUNTER_0_BASE);
+    PERF_START_MEASURING(PERFORMANCE_COUNTER_0_BASE);
+    PERF_BEGIN(PERFORMANCE_COUNTER_0_BASE, 1);
+
+    // Aciona o módulo conv_module
+    // ...
+
+    PERF_END(PERFORMANCE_COUNTER_0_BASE, 1);
+    PERF_STOP_MEASURING(PERFORMANCE_COUNTER_0_BASE);
+
+    perf_print_formatted_report((void*) PERFORMANCE_COUNTER_0_BASE, 
+                                ALT_CPU_FREQ, // Frequência do processador
+                                1, "Convolution");
+
+    return 0;
+}
+
+sinais de Controle e Operação: No VHDL, os sinais start e done são usados para iniciar e indicar a conclusão da operação de 
+convolução, respectivamente.
+
+Integração e Sincronização: É essencial garantir que a integração e sincronização entre o módulo VHDL e o processador NIOS II 
+sejam corretas, especialmente ao lidar com sinais de controle e dados.
+
+Testes e Validação: Teste extensivamente o sistema para garantir que a operação de convolução esteja funcionando corretamente e 
+que a medição de desempenho seja precisa.
